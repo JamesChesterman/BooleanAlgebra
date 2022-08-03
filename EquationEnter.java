@@ -13,6 +13,6 @@ public class EquationEnter extends JPanel{
         w = GUI.getWIDTH();
         h = GUI.getHEIGHT() / 6;
         setBounds(x, y, w, h);
-        setBackground(Color.RED);
+        setBackground(GUI.getLightPurple());
     }
 }

@@ -12,6 +12,6 @@ public class CircuitDisplay extends JPanel {
         w = GUI.getWIDTH();
         h = GUI.getHEIGHT() - y;
         setBounds(x, y, w, h);
-        setBackground(Color.GREEN);
+        setBackground(GUI.getLightGreen());
     }
 }
