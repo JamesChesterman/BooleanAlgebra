@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.Color;
 
 public class CircuitDisplay extends JPanel {
     private int x = 0;

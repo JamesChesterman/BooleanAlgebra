@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.Color;
+import java.awt.Font;
 
 public class GUI extends JFrame{
     private static int WIDTH = 600;
@@ -9,6 +10,7 @@ public class GUI extends JFrame{
     private static Color lightGreen = new Color(197, 255, 150);
     private static Color medGreen = new Color(183, 255, 124);
     private static Color darkGreen = new Color(119, 179, 70);
+    private static Font normalFont = new Font("Comic Sans MS", Font.PLAIN, 25);
 
     public static Color getLightPurple(){
         return lightPurple;
@@ -36,6 +38,10 @@ public class GUI extends JFrame{
 
     public static int getHEIGHT(){
         return HEIGHT;
+    }
+
+    public static Font getNormalFont(){
+        return normalFont;
     }
 
     public GUI(){

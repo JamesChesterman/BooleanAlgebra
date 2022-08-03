@@ -1,7 +1,5 @@
-import javax.swing.BoxLayout;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.Color;
+import javax.swing.JTextField;
 
 public class EquationEnter extends JPanel{
     private int x = 0;
@@ -14,5 +12,10 @@ public class EquationEnter extends JPanel{
         h = GUI.getHEIGHT() / 6;
         setBounds(x, y, w, h);
         setBackground(GUI.getLightPurple());
+
+        JTextField textfield = new JTextField(25);
+        textfield.setFont(GUI.getNormalFont());
+        textfield.setBounds(w/10, h/10, w/2, h/3);
+        add(textfield);
     }
 }
