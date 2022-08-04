@@ -33,6 +33,8 @@ public class EquationEnter extends JPanel{
         public void actionPerformed(ActionEvent e){
             if(e.getSource() == submitButton){
                 System.out.println(textfield.getText());
+                BinaryTree tree = Translator.translate(textfield.getText());
+                System.out.println(BinaryTree.printTree(tree));
             }
         }
     };

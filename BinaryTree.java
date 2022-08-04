@@ -1,6 +1,6 @@
 public class BinaryTree {
-    private Node gate;
-    private BinaryTree left, right;
+    public Node gate;
+    public BinaryTree left, right;
     
     public BinaryTree(Node gateType, BinaryTree t1, BinaryTree t2){
         this.gate = gateType;
@@ -9,7 +9,12 @@ public class BinaryTree {
 
     }
 
-    public String printTree(){
-        return null;
+    public static String printTree(BinaryTree t){
+        if(t == null){
+            return "";
+        }else{
+            return t.gate.getName() + printTree(t.left) + printTree(t.right);
+        }
+
     }
 }
