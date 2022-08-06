@@ -22,6 +22,10 @@ public class Translator {
                 AndNode and = new AndNode();
                 tree = new BinaryTree(and, translate(eq.substring(0, i)), translate(eq.substring(i+1, eq.length())));
                 break;
+            }else if(character == '+' && insideBrackets == 0){
+                OrNode or = new OrNode();
+                tree = new BinaryTree(or, translate(eq.substring(0, i)), translate(eq.substring(i+1, eq.length())));
+                break;
             }else{
                 //If it's just an A, B etc.
                 LetterNode node = new LetterNode(character);
