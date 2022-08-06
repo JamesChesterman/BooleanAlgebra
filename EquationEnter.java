@@ -32,8 +32,12 @@ public class EquationEnter extends JPanel{
     private ActionListener actions = new ActionListener(){
         public void actionPerformed(ActionEvent e){
             if(e.getSource() == submitButton){
-                System.out.println(textfield.getText());
                 BinaryTree tree = Translator.translate(textfield.getText());
+                //AndNode dot = new AndNode();
+                //LetterNode A = new LetterNode('A');
+                //LetterNode B = new LetterNode('B');
+                //LetterNode C = new LetterNode('C');
+                //BinaryTree tree1 = new BinaryTree(dot, new BinaryTree(dot, new BinaryTree(A, null, null), new BinaryTree(B, null, null)), new BinaryTree(C, null, null));
                 System.out.println(BinaryTree.printTree(tree));
             }
         }

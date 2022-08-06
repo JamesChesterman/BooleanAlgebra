@@ -4,6 +4,6 @@ public class AndNode extends Node {
 
     public AndNode(){
         type = "gate";
-        name = "AND";
+        name = ".";
     }
 }
