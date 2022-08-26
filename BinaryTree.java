@@ -18,4 +18,8 @@ public class BinaryTree {
         }
 
     }
+
+    public static String printRight(BinaryTree t){
+        return printTree(t.right);
+    }
 }

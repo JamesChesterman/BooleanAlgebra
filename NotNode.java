@@ -1,6 +1,6 @@
 public class NotNode extends Node{
-    public NotNode(char name){
+    public NotNode(){
         type = "gate";
-        this.name = "¬" + String.valueOf(name);
+        name = "¬";
     }
 }
