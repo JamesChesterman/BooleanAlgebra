@@ -38,7 +38,20 @@ public class Translator {
                 }else if(character == '¬' && insideBrackets == 0 && orderOfExecution[i] == '¬'){
                     NotNode not = new NotNode();
                     if(eq.charAt(j+1) == '('){
-                        System.out.println("Add whole part in brackets to the not node.");
+                        //Add the entire part in brackets to the NOT node.
+                        //If there's more brackets inside the not brackets, you don't just want to check for the next closing bracket.
+                        int insideNotBrackets = 0;
+                        int index = j+2;
+                        while(insideNotBrackets >=0){
+                            char notCharacter = eq.charAt(index);
+                            if(notCharacter == '('){
+                                insideNotBrackets += 1;
+                            }else if(notCharacter == ')'){
+                                insideNotBrackets -= 1;
+                            }
+                            index += 1;
+                        }
+                        tree = new BinaryTree(not, translate(eq.substring(j+1, index)), null);
                     }else{
                         tree = new BinaryTree(not, translate(eq.substring(j+1,j+2)), null);
                     }
