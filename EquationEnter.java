@@ -39,6 +39,7 @@ public class EquationEnter extends JPanel{
                 //LetterNode C = new LetterNode('C');
                 //BinaryTree tree1 = new BinaryTree(dot, new BinaryTree(dot, new BinaryTree(A, null, null), new BinaryTree(B, null, null)), new BinaryTree(C, null, null));
                 System.out.println(BinaryTree.printTree(tree));
+                //System.out.println(BinaryTree.printRight(tree));
             }
         }
     };
