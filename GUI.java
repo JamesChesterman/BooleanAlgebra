@@ -3,8 +3,8 @@ import java.awt.Color;
 import java.awt.Font;
 
 public class GUI extends JFrame{
-    private static int WIDTH = 600;
-    private static int HEIGHT = 600;
+    private static int WIDTH = 800;
+    private static int HEIGHT = 800;
     private static Color lightPurple = new Color(245, 125, 255);
     private static Color darkPurple = new Color(168, 52, 179);
     private static Color lightGreen = new Color(197, 255, 150);
