@@ -34,6 +34,8 @@ public class CircuitDisplay extends JPanel {
 
     public void setTree(BinaryTree tree){
         this.tree = tree;
+        System.out.println(BinaryTree.maxLength(tree));
+        sizeMultiplier = BinaryTree.maxLength(tree);
         drawing = true;
         repaint();
     }
@@ -48,12 +50,12 @@ public class CircuitDisplay extends JPanel {
         //g2d.drawImage(leftImage, 0, 0, 50, 100, null);
 
         if(drawing == true){
-            drawTree(tree, 500, 300, "top");
+            drawTree(tree, 500, 300, "top", sizeMultiplier);
         }
     }
 
     
-    public void drawTree(BinaryTree t, int X, int Y, String direction){
+    public void drawTree(BinaryTree t, int X, int Y, String direction, int sizeMultiplier){
         if(t != null){
             System.out.println("x:" + X + " y:" + Y);
             if(direction == "left"){
@@ -64,18 +66,18 @@ public class CircuitDisplay extends JPanel {
                 g2d.drawImage(straightImage, X+imgWidth, Y, imgWidth, imgHeight, null);
             }
             g2d.drawImage(t.gate.getImage(), X, Y, imgWidth, imgHeight, null);
-            validate();
-            repaint();
+            //Don't put this, it will jsut call the paintComponent method again and do all this over and over.
+            //repaint();
             if(t.right == null){
                 if(t.left != null){
-                    drawTree(t.left, X-(2*imgWidth), Y, "straight");
+                    drawTree(t.left, X-(2*imgWidth), Y, "straight", sizeMultiplier);
                 }
             }else{
                 if(t.left != null){
-                    drawTree(t.left, X-(2*imgWidth), Y-(sizeMultiplier*imgHeight), "left");
+                    drawTree(t.left, X-(2*imgWidth), Y-((sizeMultiplier-1)*imgHeight), "left", sizeMultiplier-1);
                 }
                 if(t.right != null){
-                    drawTree(t.right, X-(2* imgWidth), Y+(sizeMultiplier*imgHeight), "right");
+                    drawTree(t.right, X-(2* imgWidth), Y+((sizeMultiplier-1)*imgHeight), "right", sizeMultiplier-1);
                 }
                 
             }
