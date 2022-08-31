@@ -16,7 +16,7 @@ public class CircuitDisplay extends JPanel {
     Graphics2D g2d;
     private boolean drawing;
     private BinaryTree tree;
-    private float sizeMultiplier = 1.0f;
+    private int sizeMultiplier = 1;
 
     Image leftImage, rightImage, straightImage;
 
@@ -45,7 +45,7 @@ public class CircuitDisplay extends JPanel {
         
         g2d.setPaint(Color.blue);
         g2d.setStroke(new BasicStroke(5));
-        g2d.drawImage(leftImage, 0, 0, 50, 100, null);
+        //g2d.drawImage(leftImage, 0, 0, 50, 100, null);
 
         if(drawing == true){
             drawTree(tree, 500, 300, "top");
@@ -57,13 +57,12 @@ public class CircuitDisplay extends JPanel {
         if(t != null){
             System.out.println("x:" + X + " y:" + Y);
             if(direction == "left"){
-                g2d.drawImage(leftImage, X+imgWidth, Y+(imgHeight/2), imgWidth, imgHeight, null);
+                g2d.drawImage(leftImage, X+imgWidth, Y+(imgHeight/2), imgWidth, sizeMultiplier*imgHeight, null);
             }else if(direction == "right"){
-                g2d.drawImage(rightImage, X+imgWidth, Y-(imgHeight/2), imgWidth, imgHeight, null);
+                g2d.drawImage(rightImage, X+imgWidth, Y-((2*(sizeMultiplier-1)+1) * (imgHeight/2)), imgWidth, sizeMultiplier*imgHeight, null);
             }else if(direction == "straight"){
-                g2d.drawImage(straightImage, X+imgWidth, Y+(imgHeight/2), imgWidth, imgHeight, null);
+                g2d.drawImage(straightImage, X+imgWidth, Y, imgWidth, imgHeight, null);
             }
-            //ISSUE: the gates before the current one being looked at are drawn first (before these lines too.)
             g2d.drawImage(t.gate.getImage(), X, Y, imgWidth, imgHeight, null);
             validate();
             repaint();
@@ -73,13 +72,15 @@ public class CircuitDisplay extends JPanel {
                 }
             }else{
                 if(t.left != null){
-                    drawTree(t.left, X-(2*imgWidth), Y-imgHeight, "left");
+                    drawTree(t.left, X-(2*imgWidth), Y-(sizeMultiplier*imgHeight), "left");
                 }
                 if(t.right != null){
-                    drawTree(t.right, X-(2* imgWidth), Y+imgHeight, "right");
+                    drawTree(t.right, X-(2* imgWidth), Y+(sizeMultiplier*imgHeight), "right");
                 }
                 
             }
+        }else{
+            drawing = false;
         }
     }
     
