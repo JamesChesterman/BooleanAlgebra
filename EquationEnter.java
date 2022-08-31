@@ -12,8 +12,11 @@ public class EquationEnter extends JPanel{
     private int h;
     JButton submitButton;
     JTextField textfield;
+    CircuitDisplay circuitDisplay;
+    BinaryTree tree;
 
-    public EquationEnter(){
+    public EquationEnter(CircuitDisplay circuitDisplay){
+        this.circuitDisplay = circuitDisplay;
         w = GUI.getWIDTH();
         h = GUI.getHEIGHT() / 6;
         setBounds(x, y, w, h);
@@ -29,10 +32,14 @@ public class EquationEnter extends JPanel{
         add(submitButton);
     }
 
+    public BinaryTree getTree(){
+        return tree;
+    }
+
     private ActionListener actions = new ActionListener(){
         public void actionPerformed(ActionEvent e){
             if(e.getSource() == submitButton){
-                BinaryTree tree = Translator.translate(textfield.getText());
+                tree = Translator.translate(textfield.getText());
                 //AndNode dot = new AndNode();
                 //LetterNode A = new LetterNode('A');
                 //LetterNode B = new LetterNode('B');
@@ -40,6 +47,9 @@ public class EquationEnter extends JPanel{
                 //BinaryTree tree1 = new BinaryTree(dot, new BinaryTree(dot, new BinaryTree(A, null, null), new BinaryTree(B, null, null)), new BinaryTree(C, null, null));
                 System.out.println(BinaryTree.printTree(tree));
                 //System.out.println(BinaryTree.printRight(tree));
+
+                //circuitDisplay.drawTree(tree, 500, 500);
+                circuitDisplay.setTree(tree);
             }
         }
     };

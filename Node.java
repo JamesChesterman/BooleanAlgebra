@@ -5,6 +5,10 @@ public class Node {
     protected String type;
     protected Image image;
 
+    public Image getImage(){
+        return image;
+    }
+
     public String getName(){
         return name;
     }

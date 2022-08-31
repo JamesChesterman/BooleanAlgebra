@@ -13,6 +13,11 @@ public class CircuitDisplay extends JPanel {
     private int y;
     private int w;
     private int h;
+    private int imgWidth = 50;
+    private int imgHeight = 50;
+    Graphics2D g2d;
+    private boolean drawing;
+    private BinaryTree tree;
 
     Image andImage, orImage, notImage;
 
@@ -22,19 +27,44 @@ public class CircuitDisplay extends JPanel {
         h = GUI.getHEIGHT() - y;
         setBounds(x, y, w, h);
         setBackground(GUI.getLightGreen());
-        andImage = new ImageIcon("digger.jpg").getImage();
+        //andImage = new ImageIcon("digger.jpg").getImage();
+        drawing = false;
     }
 
-    public void paint(Graphics g){
-        Graphics2D g2d = (Graphics2D) g;
+    public void setTree(BinaryTree tree){
+        this.tree = tree;
+        drawing = true;
+        repaint();
+    }
+
+    @Override
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+        g2d = (Graphics2D) g;
         
         g2d.setPaint(Color.blue);
         g2d.setStroke(new BasicStroke(5));
-        g2d.drawLine(0, 0, 1200, 500);
-        g2d.drawRect(0, 0, 300, 300);
+        //g2d.drawLine(0, 0, 1200, 500);
+        //g2d.drawRect(0, 0, 300, 300);
         //g2d.drawImage(image, 200, 200, 200, 200, null);
-        
+
+        if(drawing == true){
+            drawTree(tree, w-(w/6), (h/2)-(imgHeight/2));
+        }
     }
+
+    
+    public void drawTree(BinaryTree t, int X, int Y){
+        if(t != null){
+            System.out.println("HERE");
+            g2d.drawImage(t.gate.getImage(), X, Y, imgWidth, imgHeight, null);
+            validate();
+            repaint();
+            drawTree(t.left, X-50, Y-50);
+            drawTree(t.right, X-50, Y+50);
+        }
+    }
+    
 
    
 }

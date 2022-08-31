@@ -50,11 +50,11 @@ public class GUI extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
 
-        EquationEnter equationEnter = new EquationEnter();
-        add(equationEnter);
-
         CircuitDisplay circuitDisplay = new CircuitDisplay();
         add(circuitDisplay);
+
+        EquationEnter equationEnter = new EquationEnter(circuitDisplay);
+        add(equationEnter);
 
         setVisible(true);
     }
