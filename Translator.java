@@ -5,7 +5,17 @@ public class Translator {
     public static String removeOuterBrackets(String eq){
         if(eq.length() > 0){
             if(eq.charAt(0) == '(' && eq.charAt(eq.length()-1) == ')'){
-                eq = eq.substring(1, eq.length()-1);
+                //Need to make sure there's no more brackets inbetween these two. For example (A.B)+(C.D) will just go to A.B)+(C.D. This is bad.
+                boolean bracketsBetween = false;
+                for(int i=1;i<eq.length()-1;i++){
+                    if(eq.charAt(i) == '(' || eq.charAt(i) == ')'){
+                        bracketsBetween = true;
+                        break;
+                    }
+                }
+                if(bracketsBetween == false){
+                    eq = eq.substring(1, eq.length()-1);
+                }   
             }
         }
         return eq;
@@ -33,7 +43,10 @@ public class Translator {
                     break outOfLoop;
                 }else if(character == '.' && insideBrackets == 0 && orderOfExecution[i] == '.'){
                     AndNode and = new AndNode();
+                    System.out.println(eq.substring(0, j));
+                    System.out.println(eq.substring(j+1, eq.length()));
                     tree = new BinaryTree(and, translate(eq.substring(0, j)), translate(eq.substring(j+1, eq.length())));
+                    BinaryTree.printTree(tree);
                     break outOfLoop;
                 }else if(character == '¬' && insideBrackets == 0 && orderOfExecution[i] == '¬'){
                     NotNode not = new NotNode();
@@ -56,8 +69,7 @@ public class Translator {
                         tree = new BinaryTree(not, translate(eq.substring(j+1,j+2)), null);
                     }
                     break outOfLoop;
-                }
-                else{
+                }else{
                     //If it's just A,B etc
                     LetterNode node = new LetterNode(character);
                     tree = new BinaryTree(node, null, null);

@@ -1,8 +1,6 @@
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-
-import java.awt.BorderLayout;
 import java.awt.event.*;
 
 public class EquationEnter extends JPanel{

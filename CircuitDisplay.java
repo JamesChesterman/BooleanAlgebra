@@ -1,10 +1,8 @@
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Rectangle;
 
 import javax.swing.*;
 
@@ -19,7 +17,7 @@ public class CircuitDisplay extends JPanel {
     private boolean drawing;
     private BinaryTree tree;
 
-    Image andImage, orImage, notImage;
+    Image leftImage, rightImage, straightImage;
 
     public CircuitDisplay(){
         y = GUI.getHEIGHT() / 6;
@@ -27,7 +25,9 @@ public class CircuitDisplay extends JPanel {
         h = GUI.getHEIGHT() - y;
         setBounds(x, y, w, h);
         setBackground(GUI.getLightGreen());
-        //andImage = new ImageIcon("digger.jpg").getImage();
+        leftImage = new ImageIcon("LeftBranch.png").getImage();
+        rightImage = new ImageIcon("RightBranch.png").getImage();
+        straightImage = new ImageIcon("StraightLine.png").getImage();
         drawing = false;
     }
 
@@ -44,24 +44,31 @@ public class CircuitDisplay extends JPanel {
         
         g2d.setPaint(Color.blue);
         g2d.setStroke(new BasicStroke(5));
-        //g2d.drawLine(0, 0, 1200, 500);
-        //g2d.drawRect(0, 0, 300, 300);
-        //g2d.drawImage(image, 200, 200, 200, 200, null);
 
         if(drawing == true){
-            drawTree(tree, w-(w/6), (h/2)-(imgHeight/2));
+            drawTree(tree, w-(w/6), (h/2)-(imgHeight/2), "top");
         }
     }
 
     
-    public void drawTree(BinaryTree t, int X, int Y){
+    public void drawTree(BinaryTree t, int X, int Y, String direction){
         if(t != null){
-            System.out.println("HERE");
+            if(direction == "left"){
+                g2d.drawImage(leftImage, X+(imgWidth/2), Y+(2*imgHeight/3), imgWidth, imgHeight, null);
+            }else if(direction == "right"){
+                g2d.drawImage(rightImage, X+(imgWidth/2), Y-(2*imgHeight/3), imgWidth, imgHeight, null);
+            }else if(direction == "straight"){
+                g2d.drawImage(straightImage, X+(imgWidth/2), Y, imgWidth, imgHeight, null);
+            }
             g2d.drawImage(t.gate.getImage(), X, Y, imgWidth, imgHeight, null);
             validate();
             repaint();
-            drawTree(t.left, X-50, Y-50);
-            drawTree(t.right, X-50, Y+50);
+            if(t.right == null){
+                drawTree(t.left, X-50, Y, "straight");
+            }else{
+                drawTree(t.left, X-50, Y-50, "left");
+                drawTree(t.right, X-50, Y+50, "right");
+            }
         }
     }
     
