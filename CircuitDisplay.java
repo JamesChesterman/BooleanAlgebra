@@ -46,11 +46,12 @@ public class CircuitDisplay extends JPanel {
         g2d = (Graphics2D) g;
         
         g2d.setPaint(Color.blue);
+        g2d.setFont(GUI.getNormalFont());
         g2d.setStroke(new BasicStroke(5));
         //g2d.drawImage(leftImage, 0, 0, 50, 100, null);
 
         if(drawing == true){
-            drawTree(tree, 500, 300, "top", sizeMultiplier);
+            drawTree(tree, w-(w/7), (h/2)-(imgHeight/2), "top", sizeMultiplier);
         }
     }
 
@@ -65,7 +66,11 @@ public class CircuitDisplay extends JPanel {
             }else if(direction == "straight"){
                 g2d.drawImage(straightImage, X+imgWidth, Y, imgWidth, imgHeight, null);
             }
-            g2d.drawImage(t.gate.getImage(), X, Y, imgWidth, imgHeight, null);
+            if(t.gate.getType().equals("gate")){
+                g2d.drawImage(t.gate.getImage(), X, Y, imgWidth, imgHeight, null);
+            }else{
+                g2d.drawString(t.gate.getName(), X+(imgWidth/2), Y+(4*imgHeight/6));
+            }
             //Don't put this, it will jsut call the paintComponent method again and do all this over and over.
             //repaint();
             if(t.right == null){
