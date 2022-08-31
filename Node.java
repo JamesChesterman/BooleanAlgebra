@@ -1,9 +1,9 @@
-
+import java.awt.Image;
 
 public class Node {
-    //private image ImageToUse
     protected String name;
     protected String type;
+    protected Image image;
 
     public String getName(){
         return name;

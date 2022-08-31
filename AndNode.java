@@ -1,9 +1,10 @@
+import javax.swing.ImageIcon;
+
 public class AndNode extends Node {
-    
-    //Would have things like image here.
 
     public AndNode(){
         type = "gate";
         name = ".";
+        image = new ImageIcon("ANDGate.png").getImage();
     }
 }
