@@ -1,6 +1,6 @@
 public class Translator {
     //BinaryTree tree;
-    static char[] orderOfExecution = {'+', '.', '¬'};   //Go through and find the +s first. This makes the AND operations be done first.
+    static char[] orderOfExecution = {'+', '^', '.', '¬'};   //Go through and find the +s first. This makes the AND operations be done first.
 
     public static String removeOuterBrackets(String eq){
         if(eq.length() > 0){
@@ -40,6 +40,10 @@ public class Translator {
                 }else if(character == '+' && insideBrackets == 0 && orderOfExecution[i] == '+'){
                     OrNode or = new OrNode();
                     tree = new BinaryTree(or, translate(eq.substring(0, j)), translate(eq.substring(j+1, eq.length())));
+                    break outOfLoop;
+                }else if(character == '^' && insideBrackets == 0 && orderOfExecution[i] == '^'){
+                    XorNode xor = new XorNode();
+                    tree = new BinaryTree(xor, translate(eq.substring(0, j)), translate(eq.substring(j+1, eq.length())));
                     break outOfLoop;
                 }else if(character == '.' && insideBrackets == 0 && orderOfExecution[i] == '.'){
                     AndNode and = new AndNode();
