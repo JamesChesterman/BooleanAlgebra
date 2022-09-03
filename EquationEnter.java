@@ -26,6 +26,7 @@ public class EquationEnter extends JPanel{
         add(textfield);
 
         submitButton = new JButton("Submit");
+        submitButton.setFont(GUI.getNormalFont());
         submitButton.addActionListener(actions);
         add(submitButton);
     }
