@@ -34,7 +34,7 @@ public class CircuitDisplay extends JPanel {
 
     public void setTree(BinaryTree tree){
         this.tree = tree;
-        System.out.println(BinaryTree.maxLength(tree));
+        //System.out.println(BinaryTree.maxLength(tree));
         sizeMultiplier = BinaryTree.maxLength(tree);
         drawing = true;
         repaint();
@@ -51,12 +51,17 @@ public class CircuitDisplay extends JPanel {
         //g2d.drawImage(leftImage, 0, 0, 50, 100, null);
 
         if(drawing == true){
-            drawTree(tree, w-(w/7), (h/2)-(imgHeight/2), "top", sizeMultiplier);
+            drawTree(tree, w-(w/5), (h/2)-(imgHeight/2), "top", sizeMultiplier);
         }
     }
 
     
     public void drawTree(BinaryTree t, int X, int Y, String direction, int sizeMultiplier){
+        if(sizeMultiplier == this.sizeMultiplier){
+            //Means it's the first node you're drawing. So put the Q here.
+            g2d.drawImage(straightImage, X+imgWidth, Y, imgWidth, imgHeight, null);
+            g2d.drawString("Q", X+(2*imgWidth)+5, Y+(4*imgHeight/6));
+        }
         if(t != null){
             System.out.println("x:" + X + " y:" + Y);
             if(direction == "left"){
